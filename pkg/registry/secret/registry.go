@@ -17,6 +17,7 @@ limitations under the License.
 package secret
 
 import (
+	"github.com/golang/glog"
 	"k8s.io/kubernetes/pkg/api"
 	"k8s.io/kubernetes/pkg/api/rest"
 	"k8s.io/kubernetes/pkg/watch"
@@ -56,6 +57,7 @@ func (s *storage) WatchSecrets(ctx api.Context, options *api.ListOptions) (watch
 }
 
 func (s *storage) GetSecret(ctx api.Context, name string) (*api.Secret, error) {
+	glog.Errorf("------------------> !!! FOO !!!")
 	obj, err := s.Get(ctx, name)
 	if err != nil {
 		return nil, err
@@ -64,6 +66,7 @@ func (s *storage) GetSecret(ctx api.Context, name string) (*api.Secret, error) {
 }
 
 func (s *storage) CreateSecret(ctx api.Context, secret *api.Secret) (*api.Secret, error) {
+
 	obj, err := s.Create(ctx, secret)
 	return obj.(*api.Secret), err
 }

@@ -24,6 +24,12 @@ const (
 	StorageTypeETCD3 = "etcd3"
 )
 
+// EncryptionConfig describes what pieces are available to enable encryption of
+// secrets in the backing store
+type EncryptionConfig struct {
+	Type string
+}
+
 // Config is configuration for creating a storage backend.
 type Config struct {
 	// Type defines the type of storage backend, e.g. "etcd2", etcd3". Default ("") is "etcd2".
@@ -44,4 +50,7 @@ type Config struct {
 	DeserializationCacheSize int
 
 	Codec runtime.Codec
+
+	// STEVESLOKA!!
+	EncryptionConfig
 }

@@ -154,10 +154,14 @@ func NewServerRunOptions() *ServerRunOptions {
 	}
 }
 
+// STEVESLOKA
 func (o *ServerRunOptions) WithEtcdOptions() *ServerRunOptions {
 	o.StorageConfig = storagebackend.Config{
 		Prefix: DefaultEtcdPathPrefix,
 		DeserializationCacheSize: DefaultDeserializationCacheSize,
+		EncryptionConfig: storagebackend.EncryptionConfig{
+			Type: "vault",
+		},
 	}
 	return o
 }
