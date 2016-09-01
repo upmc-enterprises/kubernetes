@@ -55,6 +55,7 @@ type DefaultStorageFactory struct {
 	// Its authentication information will be used for every storage.Interface returned.
 	StorageConfig storagebackend.Config
 
+	// STEVE - This is overriden
 	Overrides map[unversioned.GroupResource]groupResourceOverrides
 
 	// DefaultMediaType is the media type used to store resources. If it is not set, "application/json" is used.
@@ -75,6 +76,7 @@ type DefaultStorageFactory struct {
 	newStorageCodecFn func(storageMediaType string, ns runtime.StorageSerializer, storageVersion, memoryVersion unversioned.GroupVersion, config storagebackend.Config) (codec runtime.Codec, err error)
 }
 
+// wrap the strorage STEVE and if it's set
 type groupResourceOverrides struct {
 	// etcdLocation contains the list of "special" locations that are used for particular GroupResources
 	// These are merged on top of the StorageConfig when requesting the storage.Interface for a given GroupResource
@@ -253,6 +255,8 @@ func NewStorageCodec(storageMediaType string, ns runtime.StorageSerializer, stor
 	}
 
 	s := serializer.Serializer
+
+	// accept a new storage codec
 
 	// etcd2 only supports string data - we must wrap any result before returning
 	// TODO: storagebackend should return a boolean indicating whether it supports binary data

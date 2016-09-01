@@ -284,6 +284,7 @@ func (h *etcdHelper) extractObj(response *etcd.Response, inErr error, objPtr run
 		return "", nil, fmt.Errorf("unable to locate a value on the response: %#v", response)
 	}
 	body = node.Value
+	//STEVE!@! This is decoded here.
 	out, gvk, err := h.codec.Decode([]byte(body), nil, objPtr)
 	if err != nil {
 		return body, nil, err
