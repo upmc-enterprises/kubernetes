@@ -335,6 +335,9 @@ func (m *Master) initV1ResourcesStorage(c *Config) {
 
 	resourceQuotaStorage, resourceQuotaStatusStorage := resourcequotaetcd.NewREST(restOptions("resourceQuotas"))
 	secretStorage := secretetcd.NewREST(restOptions("secrets"))
+
+	glog.Error("Setting up storage (SLOKA): ", secretStorage)
+
 	serviceAccountStorage := serviceaccountetcd.NewREST(restOptions("serviceAccounts"))
 	persistentVolumeStorage, persistentVolumeStatusStorage := pvetcd.NewREST(restOptions("persistentVolumes"))
 	persistentVolumeClaimStorage, persistentVolumeClaimStatusStorage := pvcetcd.NewREST(restOptions("persistentVolumeClaims"))

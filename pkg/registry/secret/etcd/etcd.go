@@ -17,6 +17,7 @@ limitations under the License.
 package etcd
 
 import (
+	"github.com/golang/glog"
 	"k8s.io/kubernetes/pkg/api"
 	"k8s.io/kubernetes/pkg/registry/cachesize"
 	"k8s.io/kubernetes/pkg/registry/generic"
@@ -33,6 +34,10 @@ type REST struct {
 // NewREST returns a RESTStorage object that will work against secrets.
 func NewREST(opts generic.RESTOptions) *REST {
 	prefix := "/" + opts.ResourcePrefix
+
+	if opts.StorageConfig.EncryptionConfig.Type == "vault" {
+		glog.Error("SLOKA: Let's setup a vault integration!!! ")
+	}
 
 	newListFunc := func() runtime.Object { return &api.SecretList{} }
 	storageInterface, _ := opts.Decorator(

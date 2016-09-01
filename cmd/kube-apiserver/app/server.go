@@ -268,6 +268,8 @@ func Run(s *options.APIServer) error {
 		glog.Fatalf("Failed to initialize plugins: %v", err)
 	}
 
+	glog.Error("SLOKA config: ", s.ServerRunOptions.StorageConfig.EncryptionConfig.Type)
+
 	genericConfig := genericapiserver.NewConfig(s.ServerRunOptions)
 	// TODO: Move the following to generic api server as well.
 	genericConfig.StorageFactory = storageFactory

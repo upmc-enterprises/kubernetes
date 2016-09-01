@@ -36,6 +36,7 @@ type strategy struct {
 	api.NameGenerator
 }
 
+//STEVESLOKA HERE!!!
 // Strategy is the default logic that applies when creating and updating Secret
 // objects via the REST API.
 var Strategy = strategy{api.Scheme, api.SimpleNameGenerator}

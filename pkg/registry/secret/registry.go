@@ -41,10 +41,14 @@ type storage struct {
 // NewRegistry returns a new Registry interface for the given Storage. Any mismatched
 // types will panic.
 func NewRegistry(s rest.StandardStorage) Registry {
+
+	glog.Error("SLOKA make new Registry for storage")
 	return &storage{s}
 }
 
 func (s *storage) ListSecrets(ctx api.Context, options *api.ListOptions) (*api.SecretList, error) {
+	glog.Error("SLOKA list secrets")
+
 	obj, err := s.List(ctx, options)
 	if err != nil {
 		return nil, err
@@ -57,7 +61,7 @@ func (s *storage) WatchSecrets(ctx api.Context, options *api.ListOptions) (watch
 }
 
 func (s *storage) GetSecret(ctx api.Context, name string) (*api.Secret, error) {
-	glog.Errorf("------------------> !!! FOO !!!")
+	glog.Error("------------------> !!! FOO  SLOKA!!!")
 	obj, err := s.Get(ctx, name)
 	if err != nil {
 		return nil, err
