@@ -80,6 +80,9 @@ func (s *store) Versioner() storage.Versioner {
 
 // Get implements storage.Interface.Get.
 func (s *store) Get(ctx context.Context, key string, out runtime.Object, ignoreNotFound bool) error {
+
+	glog.Error("STEVE : ETCD3!!")
+
 	key = keyWithPrefix(s.pathPrefix, key)
 	getResp, err := s.client.KV.Get(ctx, key)
 	if err != nil {

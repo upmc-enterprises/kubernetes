@@ -328,6 +328,7 @@ func (n StripVersionNegotiatedSerializer) EncoderForVersion(encoder runtime.Enco
 		// decoder.
 		panic(fmt.Sprintf("Unable to extract serializer from %#v", encoder))
 	}
+
 	versioned := n.NegotiatedSerializer.EncoderForVersion(encoder, gv)
 	return stripVersionEncoder{versioned, serializer}
 }

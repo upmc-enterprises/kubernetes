@@ -40,6 +40,8 @@ import (
 	"golang.org/x/net/context"
 )
 
+// STEVESLOKA HERE!! Wrap this up!
+
 // Creates a new storage interface from the client
 // TODO: deprecate in favor of storage.Config abstraction over time
 func NewEtcdStorage(client etcd.Client, codec runtime.Codec, prefix string, quorum bool, cacheSize int) storage.Interface {
@@ -89,6 +91,9 @@ func init() {
 func (h *etcdHelper) Versioner() storage.Versioner {
 	return h.versioner
 }
+
+// Wraps the Implemented storage.Interface
+//type (h *etcdHelper) encryptedCreate func(tx context.Context, key string, obj, out runtime.Object, ttl uint64) error
 
 // Implements storage.Interface.
 func (h *etcdHelper) Create(ctx context.Context, key string, obj, out runtime.Object, ttl uint64) error {
@@ -233,6 +238,9 @@ func (h *etcdHelper) WatchList(ctx context.Context, key string, resourceVersion 
 
 // Implements storage.Interface.
 func (h *etcdHelper) Get(ctx context.Context, key string, objPtr runtime.Object, ignoreNotFound bool) error {
+
+	glog.Error("STEVE : etcd_helper.go")
+
 	if ctx == nil {
 		glog.Errorf("Context is nil")
 	}

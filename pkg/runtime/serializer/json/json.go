@@ -158,6 +158,9 @@ func (s *Serializer) Decode(originalData []byte, gvk *unversioned.GroupVersionKi
 	if err := codec.NewDecoderBytes(data, new(codec.JsonHandle)).Decode(obj); err != nil {
 		return nil, actual, err
 	}
+
+	//STEVESLOKA: Decode Here
+
 	return obj, actual, nil
 }
 

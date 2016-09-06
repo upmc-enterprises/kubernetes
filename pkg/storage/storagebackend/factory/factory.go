@@ -19,6 +19,8 @@ package factory
 import (
 	"fmt"
 
+	"github.com/golang/glog"
+
 	"k8s.io/kubernetes/pkg/storage"
 	"k8s.io/kubernetes/pkg/storage/storagebackend"
 )
@@ -28,6 +30,9 @@ type DestroyFunc func()
 
 // Create creates a storage backend based on given config.
 func Create(c storagebackend.Config) (storage.Interface, DestroyFunc, error) {
+
+	glog.Error("STEVE: in factory.go: ", c.EncryptionConfig.Type)
+
 	switch c.Type {
 	case storagebackend.StorageTypeUnset, storagebackend.StorageTypeETCD2:
 		return newETCD2Storage(c)

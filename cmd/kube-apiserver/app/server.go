@@ -144,6 +144,7 @@ func Run(s *options.APIServer) error {
 	if err != nil {
 		glog.Fatalf("error generating storage version map: %s", err)
 	}
+
 	storageFactory, err := genericapiserver.BuildDefaultStorageFactory(
 		s.StorageConfig, s.DefaultStorageMediaType, api.Codecs,
 		genericapiserver.NewDefaultResourceEncodingConfig(), storageGroupsToEncodingVersion,
